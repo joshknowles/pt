@@ -4,6 +4,7 @@ require 'ostruct'
 require "net/https"
 require "uri"
 require "hpricot"
+require 'date'
 
 require "pivotal_tracker/story"
 require "pivotal_tracker/iteration"
