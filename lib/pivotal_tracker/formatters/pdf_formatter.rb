@@ -28,6 +28,8 @@ class Prawn::Document
           # outline_box
           text story.name, :size => 24, :align => :center
         end
+
+        text story.estimate, :size => 14, :align => :right
       end
     end
   end
