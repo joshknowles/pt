@@ -35,9 +35,10 @@ module PivotalTracker
 
   def self.parse_args(args)
     options = OpenStruct.new
+    options.file_name = "stories.pdf"
 
     opts = OptionParser.new do |opts|
-      opts.banner = "Usage: pt [options] FILE_NAME"
+      opts.banner = "Usage: pt [options]"
 
       opts.on("-p", "--project PROJECT_ID","Specify the project id") do |project_id|
         options.project_id = project_id
@@ -45,6 +46,10 @@ module PivotalTracker
 
       opts.on("-t", "--token TOKEN","Specify the API token") do |token|
         options.token = token
+      end
+
+      opts.on("-o", "--output FILE_NAME","Specify the output filename (default stories.pdf)") do |file_name|
+        options.file_name = file_name
       end
 
       opts.on_tail("-h", "--help", "Show this message") do
@@ -55,12 +60,6 @@ module PivotalTracker
 
     opts.parse!(args)
 
-    if args.empty?
-      puts opts
-      exit!
-    else
-      options.file_name = args.shift
-      return options
-    end
+    options
   end
 end

@@ -1,6 +1,7 @@
 10/31/2008
 ----------
 
+* Default the output filename to stories.pdf.  Change via the "-o" flag. (JK)
 * Display the estimate on the generated story card (JK)
 * Properly require date & allow for symlink (Andre Arko)
 
