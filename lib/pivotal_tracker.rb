@@ -4,14 +4,14 @@ require 'ostruct'
 require "net/https"
 require "uri"
 require "hpricot"
-require 'date'
+require "date"
 
 require "pivotal_tracker/story"
 require "pivotal_tracker/iteration"
 require "pivotal_tracker/formatters"
 
 module PivotalTracker
-  SERVER      = "https://www.pivotaltracker.com/services/v1"
+  SERVER = "https://www.pivotaltracker.com/services/v1"
 
   def self.generate(args)
     options = parse_args(args)
