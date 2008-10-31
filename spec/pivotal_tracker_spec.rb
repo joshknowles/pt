@@ -4,6 +4,10 @@ require "pivotal_tracker"
 
 describe PivotalTracker do
   describe "default_options" do
+    it "should default to the console formatter" do
+      PivotalTracker.default_options[:formatter].should == "console"
+    end
+
     it "should default file_name to stories.pdf" do
       PivotalTracker.default_options[:file_name].should == "stories.pdf"
     end

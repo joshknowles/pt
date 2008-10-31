@@ -30,7 +30,7 @@ module PivotalTracker
       stories
     end
 
-    PivotalTracker::Formatters::PDF.generate(current_stories, options[:file_name])
+    PivotalTracker::Formatters.formatter(options).format(current_stories, options)
   end
 
   def self.parse_args(args)
@@ -40,15 +40,19 @@ module PivotalTracker
     opts = OptionParser.new do |opts|
       opts.banner = "Usage: pt [options]"
 
-      opts.on("-p", "--project PROJECT_ID","Specify the project id") do |project_id|
+      opts.on("-p", "--project PROJECT_ID", "Specify the project id") do |project_id|
         options[:project_id] = project_id
       end
 
-      opts.on("-t", "--token TOKEN","Specify the API token") do |token|
+      opts.on("-t", "--token TOKEN"," Specify the API token") do |token|
         options[:token] = token
       end
 
-      opts.on("-o", "--output FILE_NAME","Specify the output filename (default stories.pdf)") do |file_name|
+      opts.on("-f", "--formatter FORMATTER", "Specify the formatter to use (current options are console or pdf)") do |formatter|
+        options[:formatter] = formatter
+      end
+
+      opts.on("-o", "--output FILE_NAME", "Specify the output filename (default stories.pdf)") do |file_name|
         options[:file_name] = file_name
       end
 
@@ -69,7 +73,10 @@ module PivotalTracker
   end
 
   def self.default_options
-    { :file_name => "stories.pdf" }
+    {
+      :formatter => "console",
+      :file_name => "stories.pdf"
+    }
   end
 
   def self.load_options_from_config

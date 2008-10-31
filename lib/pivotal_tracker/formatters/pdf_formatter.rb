@@ -35,9 +35,9 @@ class Prawn::Document
   end
 end
 
-module PivotalTracker::Formatters::PDF
-  def self.generate(stories, file_name)
-    Prawn::Document.generate(file_name, :page_layout => :landscape) do
+class PivotalTracker::Formatters::PDFFormatter
+  def format(stories, options)
+    Prawn::Document.generate(options[:file_name], :page_layout => :landscape) do
       row = 2
       col = 0
 
