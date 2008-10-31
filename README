@@ -1,0 +1,25 @@
+Pivotal Tracker
+===============
+
+Simple client for accessing Pivotal Tracker & generating reports
+
+Usage
+-----
+
+./bin/pt -p PROJECT_ID -t TOKEN FILE_NAME
+
+Acknowledgements
+----------------
+
+* Original inspiration: http://www.lukemelia.com/blog/archives/2007/12/29/pdf-storycards-001-released-my-first-gem
+* PDF generation code extracted from: http://github.com/brynary/features2cards
+* Thanks to Gregory Brown for making PDF generation in Ruby easy
+* Thanks to Pivotal for a great tool & access to the API
+
+Requirements
+------------
+
+* Ruby 1.8+
+* RubyGems
+* Hpricot
+* prawn
