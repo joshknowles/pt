@@ -3,6 +3,12 @@ require File.join(File.dirname(__FILE__), "spec_helper")
 require "pivotal_tracker"
 
 describe PivotalTracker do
+  describe "default_options" do
+    it "should default file_name to stories.pdf" do
+      PivotalTracker.default_options[:file_name].should == "stories.pdf"
+    end
+  end
+
   describe "validate_options" do
     before :each do
       @valid_options = {

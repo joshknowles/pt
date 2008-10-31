@@ -34,8 +34,8 @@ module PivotalTracker
   end
 
   def self.parse_args(args)
-    options = {}
-    options[:file_name] = "stories.pdf"
+    options = default_options
+    options.merge!(load_options_from_config)
 
     opts = OptionParser.new do |opts|
       opts.banner = "Usage: pt [options]"
@@ -58,11 +58,28 @@ module PivotalTracker
       end
     end
 
-    if opts.parse!(args) && validate_options(options)
+    opts.parse!(args)
+
+    if validate_options(options)
       options
     else
       puts opts
       exit!
+    end
+  end
+
+  def self.default_options
+    { :file_name => "stories.pdf" }
+  end
+
+  def self.load_options_from_config
+    if File.exist?(".tracker")
+      YAML::load(IO.read(".tracker")).inject({}) do |options, option|
+        options[option[0].to_sym] = option[1]
+        options
+      end
+    else
+      Hash.new
     end
   end
 
